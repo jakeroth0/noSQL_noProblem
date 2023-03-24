@@ -1,0 +1,31 @@
+{
+  "name": "nosql_noproblem",
+  "version": "1.0.0",
+  "description": "API built for a social network web application. Express.js, MongoDB, and Mongoose ODM were used to create this.",
+  "main": "app.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "test",
+    "start": "node app",
+    "dev": "nodemon app",
+    "seed": "node utils/seed"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakeroth0/noSQL_noProblem.git"
+  },
+  "author": "Jacob Roth",
+  "bugs": {
+    "url": "https://github.com/jakeroth0/noSQL_noProblem/issues"
+  },
+  "homepage": "https://github.com/jakeroth0/noSQL_noProblem#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.10.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.9"
+  }
+}
