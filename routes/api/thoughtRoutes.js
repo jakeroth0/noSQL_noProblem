@@ -1,8 +1,12 @@
 const router = require('express').Router();
+const { 
+    getAllThoughts,
+    getThoughtById, } = require('../../controllers/thoughtController');
 
-// Placeholder route to avoid the error
-router.get('/', (req, res) => {
-  res.send('Thought routes');
-});
+// GET all thoughts
+router.get('/', getAllThoughts);
+
+// Get a single thought by ID
+router.get('/:id', getThoughtById);
 
 module.exports = router;
