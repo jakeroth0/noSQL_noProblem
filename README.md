@@ -17,7 +17,7 @@
   ![Thumbnail](images/noSQL_noProblemThumbnail.png)
 
   ## Link
-  [Video_Demo](https://www.youtube.com/watch?v=LsnODYL6ztU&t=24790s)
+  [Video_Demo](https://drive.google.com/file/d/1-w0TRHFJXQGPYHo4_Pw78wckty9OrGpp/view?usp=share_link)
   
   ## Installation
   To install necessary dependencies, run the following command:
