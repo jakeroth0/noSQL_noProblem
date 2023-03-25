@@ -68,16 +68,24 @@ const thoughtController = {
   },
   async deleteThought(req, res) {
     try {
-      const { params: { thoughtId } } = req;
-      const deletedThought = await Thought.findByIdAndDelete(thoughtId);
+      const deletedThought = await Thought.findOneAndDelete({
+        _id: req.params.thoughtId,
+        username: req.params.username,
+      });
+      console.log(deletedThought, 'deleted thought--------------')
+      console.log(req.params.thoughtId, '_id--------------')
+      console.log(req.params.username, 'username--------------')
+  
       if (!deletedThought) {
         return res.status(404).json({ message: 'Thought not found' });
       }
-      await User.findByIdAndUpdate(
-        deletedThought.userId,
-        { $pull: { thoughts: thoughtId } }
+  
+      await User.findOneAndUpdate(
+        { username: req.params.username },
+        { $pull: { thoughts: req.params.thoughtId } }
       );
-      res.json({ message: 'Thought deleted successfully' });
+  
+      res.json({ message: 'Thought deleted', deletedThought });
     } catch (err) {
       console.error(err);
       res.status(500).json(err);
