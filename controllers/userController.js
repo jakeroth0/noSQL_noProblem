@@ -61,6 +61,40 @@ const userController = {
       res.status(500).json(err);
     }
   },
+  // Add a friend to a user
+  async addFriend(req, res) {
+    try {
+      const { userId, friendId } = req.params;
+      const updatedUser = await User.findByIdAndUpdate(
+        userId,
+        { $addToSet: { friends: friendId } },
+        { new: true }
+      );
+      if (!updatedUser) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      res.json(updatedUser);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json(err);
+    }
+  },
+  async removeFriend(req, res) {
+    try {
+      const updatedUser = await User.findByIdAndUpdate(
+        req.params.userId,
+        { $pull: { friends: req.params.friendId } },
+        { new: true }
+      );
+      if (!updatedUser) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      res.json(updatedUser);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json(err);
+    }
+  },
 };
 
 module.exports = userController;
