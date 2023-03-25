@@ -1,4 +1,5 @@
 const express = require('express');
+// Mongoose package is in use
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
