@@ -4,7 +4,9 @@ const {
     getThoughtById,
     createThought,
     updateThought,
-    deleteThought, } = require('../../controllers/thoughtController');
+    deleteThought,
+    addReaction,
+    deleteReaction, } = require('../../controllers/thoughtController');
 
 // GET all thoughts
 router.get('/', getAllThoughts);
@@ -20,4 +22,11 @@ router.put('/:thoughtId', updateThought);
 
 // DELETE a thought
 router.delete('/:thoughtId', deleteThought);
+
+// POST a reaction
+router.post('/:thoughtId/reactions', addReaction);
+
+// DELETE a reaction
+router.route('/:thoughtId/reactions/:reactionId').delete(deleteReaction);
+
 module.exports = router;
