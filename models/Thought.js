@@ -22,7 +22,13 @@ const ReactionSchema = new Schema({
     // depending on the locale, it'll look similar to MM/DD/YYYY if the local is uk, it should be DD/MM/YYYY
     type: Date,
     default: Date.now,
-    get: (timestamp) => new Date(timestamp).toLocaleDateString()
+    get: (timestamp) => {
+      const date = new Date(timestamp);
+      const month = date.getMonth() + 1;
+      const day = date.getDate();
+      const year = date.getFullYear();
+      return `${month}/${day}/${year}`;
+    },
   }
 });
 
@@ -36,7 +42,13 @@ const ThoughtSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-    get: (timestamp) => new Date(timestamp).toLocaleDateString()
+    get: (timestamp) => {
+      const date = new Date(timestamp);
+      const month = date.getMonth() + 1;
+      const day = date.getDate();
+      const year = date.getFullYear();
+      return `${month}/${day}/${year}`;
+    },
   },
   username: {
     type: String,

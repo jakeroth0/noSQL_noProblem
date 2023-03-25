@@ -5,23 +5,31 @@ const thoughtController = {
   async getAllThoughts(req, res) {
     try {
       const thoughtData = await Thought.find({});
-      res.json(thoughtData);
+      const formattedThoughtData = thoughtData.map(thought => ({
+        ...thought.toObject(),
+        createdAt: thought.createdAt
+      }));
+      res.json(formattedThoughtData);
     } catch (err) {
       res.status(500).json(err);
     }
   },
     // Get a single thought by ID
     async getThoughtById(req, res) {
-        try {
+      try {
         const thoughtData = await Thought.findById(req.params.id);
         if (!thoughtData) {
-            res.status(404).json({ message: 'No thought found with this ID!' });
-            return;
+          res.status(404).json({ message: 'No thought found with this ID!' });
+          return;
         }
-        res.json(thoughtData);
-        } catch (err) {
+        const formattedThoughtData = {
+          ...thoughtData.toObject(),
+          createdAt: thoughtData.createdAt
+        };
+        res.json(formattedThoughtData);
+      } catch (err) {
         res.status(500).json(err);
-        }
+      }
     },
      // Create a new thought
   async createThought(req, res) {
